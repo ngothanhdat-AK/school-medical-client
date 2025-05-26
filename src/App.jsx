@@ -12,6 +12,7 @@ import About from "./pages/About";
 import AdminDashboard from "./pages/Admin/Home/Home";
 import NurseDashboard from "./pages/Nurse/Home/NurseDashboard";
 import ProtectedRoute from "./components/ProtectRoute/ProtectRoute";
+import MainLayout from "./components/MainLayout/MainLayout";
 
 function App() {
   return (
@@ -27,25 +28,25 @@ function App() {
           <Route path="blog" element={<Blog />} />
           <Route path="contact" element={<Contact />} />
           <Route path="about" element={<About />} />
-          Trang Home cho Admin
-          <Route
-            path="admin"
-            element={
-              <ProtectedRoute allowedRoles={["admin"]}>
-                <AdminDashboard />
-              </ProtectedRoute>
-            }
-          />
-          {/* Trang Home cho Nurse */} */ /*{" "}
-          <Route
-            path="nurse"
-            element={
-              <ProtectedRoute allowedRoles={["nurse"]}>
-                <NurseDashboard />
-              </ProtectedRoute>
-            }
-          />
         </Route>
+        {/* Trang Home cho Admin */}
+        <Route
+          path="admin"
+          element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <MainLayout />
+            </ProtectedRoute>
+          }
+        />
+        {/* Trang Home cho Nurse */}
+        <Route
+          path="nurse"
+          element={
+            <ProtectedRoute allowedRoles={["nurse"]}>
+              <NurseDashboard />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </>
   );

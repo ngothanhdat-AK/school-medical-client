@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
 import "./Login.scss";
 import {Eye, EyeOff} from "lucide-react";
-import {axiosPublic} from "../../api/axios";
+import {authenticationAPI} from "../../services/authentication";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -27,13 +27,10 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axiosPublic.post("/auth/login", {
-        phoneNumber: formData.phoneNumber,
-        password: formData.password,
-      });
+      const response = await authenticationAPI.Login(formData);
 
-      const data = response.data;
-
+      const data = response;
+      console.log(data);
       // Lưu token
       localStorage.setItem("accessToken", data.accessToken);
       localStorage.setItem("refreshToken", data.refreshToken);
