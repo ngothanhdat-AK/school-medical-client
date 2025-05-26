@@ -25,7 +25,7 @@ function ProtectedRoute({children, allowedRoles}) {
   const roleClaim =
     "http://schemas.microsoft.com/ws/2008/06/identity/claims/role";
   const userRole = decodedPayload[roleClaim] || decodedPayload["role"] || "";
-
+  console.log("userRole:", userRole);
   // Kiểm tra role có được phép vào không
   if (!allowedRoles.includes(userRole)) {
     // Không có quyền => redirect ra trang khác hoặc 403 page

@@ -48,22 +48,21 @@ const Login = () => {
         decodedPayload[roleClaim] || decodedPayload["role"] || "user";
 
       // Hiện alert thành công
-      await Swal.fire({
+      Swal.fire({
         icon: "success",
         title: "Login Successful",
         text: "Welcome back!",
         timer: 1500,
         showConfirmButton: false,
+      }).then(() => {
+        if (role === "admin") {
+          navigate("/admin");
+        } else if (role === "nurse") {
+          navigate("/nurse");
+        } else {
+          navigate("/");
+        }
       });
-
-      // Redirect theo role
-      if (role === "admin") {
-        navigate("/admin");
-      } else if (role === "nurse") {
-        navigate("/nurse");
-      } else {
-        navigate("/"); // Hoặc trang mặc định
-      }
     } catch (err) {
       const msg = err.response?.data || "Login failed";
 
@@ -112,7 +111,7 @@ const Login = () => {
                       className="login_form__input"
                       type={showPassword ? "text" : "password"}
                       name="password"
-                      placeholder="*"
+                      placeholder="***"
                       value={formData.password}
                       onChange={handleChange}
                       required
@@ -127,7 +126,7 @@ const Login = () => {
             </div>
 
             <div className="login_form__terms">
-              <div class="terms-container">
+              <div className="terms-container">
                 <p>By continuing, you agree to the </p>
                 <span>
                   <a href="">Terms of use</a>
