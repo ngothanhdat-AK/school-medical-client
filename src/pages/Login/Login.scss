@@ -1,0 +1,92 @@
+.login_main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0px;
+
+  .login_form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: #fff;
+    border-radius: 1rem;
+    // box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 500px;
+
+    .login_name {
+      text-align: center;
+      font-size: 1.5rem;
+      font-family: "Poppins", sans-serif;
+    }
+
+    .login_form {
+      display: flex;
+      flex-direction: column;
+
+      &__label {
+        margin-bottom: 5px;
+        font-size: 14px;
+        font-weight: 400;
+        color: #7e7e7e;
+      }
+
+      &__input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+      }
+      &__forget {
+        font-size: 14px;
+
+        margin-bottom: 25px;
+        a {
+          text-decoration: underline;
+          color: #414040;
+        }
+      }
+      &__terms {
+        display: flex;
+        flex-direction: row !important;
+        font-size: 12px;
+        margin-bottom: 10px;
+      }
+
+      &__eye-password {
+        position: relative;
+      }
+      &__eye {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+
+    .login_button {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: #ccc;
+      color: #fff;
+      font-weight: 500;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #aaa;
+      }
+    }
+  }
+}
+.terms-container {
+  display: flex;
+  align-items: center; /* Căn giữa theo chiều dọc */
+  justify-content: center; /* Căn đều các phần tử theo chiều ngang */
+  gap: 5px; /* Khoảng cách giữa các phần tử */
+}
