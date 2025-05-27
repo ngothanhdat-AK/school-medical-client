@@ -1,0 +1,98 @@
+.profile_main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', sans-serif;
+
+  .profile_image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+
+    img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #000;
+      margin-bottom: 10px;
+    }
+
+    input[type="file"] {
+      margin-bottom: 10px;
+    }
+  }
+
+  .profile_form {
+    width: 100%;
+    max-width: 900px;
+
+    h2 {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    form > div {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .profile_input_1,
+    .profile_input_2
+     {
+      flex: 1 1 45%;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      label {
+        font-size: 14px;
+        font-weight: 500;
+        color: #333;
+      }
+
+      input {
+        padding: 10px 12px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+      }
+    }
+    .profile_input_3 {
+      flex: 1 1 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      label {
+        font-size: 14px;
+        font-weight: 500;
+        color: #333;
+      }
+
+      input {
+        padding: 10px 12px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+      }
+    }
+  }
+}
+
+// ✅ Responsive cho mobile
+@media (max-width: 768px) {
+  .profile_form form > div {
+    flex-direction: column;
+  }
+
+  .profile_input_1,
+  .profile_input_2,
+  .profile_input_3 {
+    flex: 1 1 100%;
+  }
+}
