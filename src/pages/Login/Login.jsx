@@ -5,9 +5,13 @@ import Swal from "sweetalert2";
 import "./Login.scss";
 import {Eye, EyeOff} from "lucide-react";
 import {authenticationAPI} from "../../services/authentication";
+import {useDispatch} from "react-redux";
+import {setUserInfo} from "../../redux/feature/userSlice";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     phoneNumber: "",
     password: "",
@@ -29,6 +33,10 @@ const Login = () => {
     try {
       const response = await authenticationAPI.Login(formData);
 
+      //Lấy thêm user profile của người dùng vừa login vào để hiển thị thông tin
+      // const userProfileResponse = await axios.get(
+      // );
+
       const data = response;
       console.log(data);
       // Lưu token
@@ -36,13 +44,24 @@ const Login = () => {
       localStorage.setItem("refreshToken", data.refreshToken);
       console.log(data.accessToken);
       // Giải mã role
+      //Decode payload token
       const payloadBase64 = data.accessToken.split(".")[1];
       const base64 = payloadBase64.replace(/-/g, "+").replace(/_/g, "/");
       const decodedPayload = JSON.parse(atob(base64));
+
+      //Lấy userId và role từ decodedPayload
       const roleClaim =
         "http://schemas.microsoft.com/ws/2008/06/identity/claims/role";
       const role =
         decodedPayload[roleClaim] || decodedPayload["role"] || "user";
+      //Lấy userID từ decodedPayload
+      const userIdClaim =
+        "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier";
+      const userId = decodedPayload[userIdClaim] || null;
+      // console.log("role:", role);
+      // console.log("userId:", userId);
+      //Lưu vào Redux
+      dispatch(setUserInfo({role, userId}));
 
       // Hiện alert thành công
       Swal.fire({
@@ -52,10 +71,12 @@ const Login = () => {
         timer: 1500,
         showConfirmButton: false,
       }).then(() => {
-        if (role === "admin") {
+        if (role === "admin" || role === "manager") {
           navigate("/admin");
         } else if (role === "nurse") {
           navigate("/nurse");
+        } else if (role === "parent") {
+          navigate("/parent");
         } else {
           navigate("/");
         }

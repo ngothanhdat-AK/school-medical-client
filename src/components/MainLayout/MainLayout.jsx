@@ -3,14 +3,13 @@ import {Layout} from "antd";
 import {Outlet} from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar";
 
-
 const {Content, Sider} = Layout;
 
 const MainLayout = () => {
   return (
     <Layout style={{minHeight: "100vh"}}>
       {/* Sidebar cố định */}
-      <Sider width={250} style={{background: "#fff", padding: "20px"}}>
+      <Sider width={250} style={{background: "#fff"}}>
         <Sidebar />
       </Sider>
 

@@ -13,5 +13,7 @@ export const authenticationAPI = {
             throw error; // Re-throw the error for further handling
         }
     },
-    // ResetPassword:
+    ResetPassword: {
+
+    },
 }
