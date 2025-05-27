@@ -62,6 +62,8 @@ const Login = () => {
       // console.log("userId:", userId);
       //Lưu vào Redux
       dispatch(setUserInfo({role, userId}));
+      localStorage.setItem("userId", userId);
+      localStorage.setItem("role", role);
 
       // Hiện alert thành công
       Swal.fire({
