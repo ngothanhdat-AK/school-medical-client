@@ -1,12 +1,22 @@
 import React from "react";
 import "./Header.scss";
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import HeaderLogoTop from "../../assets/images/Medical.svg";
 import HeaderLogoBottom from "../../assets/images/Black Modern Medical Logo.svg";
 import Call_Icon from "../../assets/images/Call_Icon.svg";
 import Clock_Icon from "../../assets/images/Clock_Icon.svg";
 import Location_Icon from "../../assets/images/Location_Icon.svg";
+import {useSelector} from "react-redux";
 const Header = () => {
+  const navigate = useNavigate();
+  const token = localStorage.getItem("accessToken"); // Kiểm tra đăng nhập
+  const role = useSelector((state) => state.user.role);
+
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken"); // Xóa token khi logout
+    // Bạn cũng có thể xóa các thông tin user khác ở đây nếu dùng redux
+    navigate("/login"); // Chuyển về trang login hoặc trang chủ
+  };
   return (
     <>
       <div className="header">
@@ -105,35 +115,48 @@ const Header = () => {
               </li>
               <li className="header__bottom-item">
                 <NavLink
-                  to="/about"
+                  to="/parent"
                   style={{textDecoration: "none"}}
                   className={({isActive}) => (isActive ? "active-link" : "")}
                 >
-                  About School
+                  Services
                 </NavLink>
               </li>
             </ul>
           </nav>
 
           <div className="header__bottom-button flex justify-center items-center gap-4 mr-10">
-            <div>
-              <NavLink
-                className="header__register"
-                to="/resetpassword"
-                style={{textDecoration: "none"}}
-              >
-                <button>Register</button>
-              </NavLink>
-            </div>
-            <div>
-              <NavLink
-                className="header__login"
-                to="/login"
-                style={{textDecoration: "none"}}
-              >
-                <button>Login</button>
-              </NavLink>
-            </div>
+            {!token ? (
+              <>
+                <div>
+                  <NavLink
+                    className="header__register"
+                    to="/resetpassword"
+                    style={{textDecoration: "none"}}
+                  >
+                    <button>Register</button>
+                  </NavLink>
+                </div>
+                <div>
+                  <NavLink
+                    className="header__login"
+                    to="/login"
+                    style={{textDecoration: "none"}}
+                  >
+                    <button>Login</button>
+                  </NavLink>
+                </div>
+              </>
+            ) : (
+              <div className="flex items-center gap-3">
+                <span style={{color: "#355383", fontWeight: "bold"}}>
+                  Hello, {role || "User"}
+                </span>
+                <button className="header__login" onClick={handleLogout}>
+                  Logout
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
