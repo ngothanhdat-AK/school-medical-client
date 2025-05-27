@@ -6,7 +6,8 @@ import "./index.scss";
 
 const UserProfile = () => {
   const [user, setUser] = useState(null);
-  const userId = useSelector((state) => state.user.userId);
+  const storedUserId = localStorage.getItem("userId");
+  const userId = useSelector((state) => state.user.userId) || storedUserId;
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     if (!userId || !token) {
@@ -16,8 +17,8 @@ const UserProfile = () => {
     const fetchUserProfile = async () => {
       try {
         const response = await axiosInstance.get(`/user-profile/${userId}`);
-        setUser(response);
-        console.log("User profile fetched successfully:", response);
+        setUser(response.data);
+        console.log("User profile fetched successfully:", response.data);
       } catch (error) {
         console.error("Error fetching user profile:", error);
       }
