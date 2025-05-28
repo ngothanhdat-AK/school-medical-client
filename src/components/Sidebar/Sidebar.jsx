@@ -1,17 +1,74 @@
 import React from "react";
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 import {Menu} from "antd";
-import {Link, useLocation} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import {DownOutlined} from "@ant-design/icons";
+import {setUserInfo} from "../../redux/feature/userSlice";
+import "./index.scss"; // Import your CSS styles for the sidebar
 
 const Sidebar = () => {
   const role = useSelector((state) => state.user.role);
   const location = useLocation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   if (!role) return null;
-  console.log(role);
+
+  const adminMenu = [
+    {label: "Dashboard", key: "/admin", link: "/admin"},
+    // Account Management sẽ bị loại bỏ cho manager
+    {
+      label: "Campaign",
+      key: "campaign",
+      dropdown: [
+        {
+          label: "Campaign List",
+          key: "/admin/campaign/campaign-list",
+          link: "/admin/campaign/campaign-list",
+        },
+        {
+          label: "Create Campaign",
+          key: "/admin/campaign/create-campaign",
+          link: "/admin/campaign/create-campaign",
+        },
+        {
+          label: "Detail Campaign",
+          key: "/admin/campaign/detail-campaign",
+          link: "/admin/campaign/detail-campaign",
+        },
+        {
+          label: "History Campaign",
+          key: "/admin/campaign/history-campaign",
+          link: "/admin/campaign/history-campaign",
+        },
+      ],
+    },
+    {
+      label: "Student Management",
+      key: "student-management",
+      dropdown: [
+        {
+          label: "Add Student",
+          key: "/admin/student-management/add-student",
+          link: "/admin/student-management/add-student",
+        },
+        {
+          label: "Student List",
+          key: "/admin/student-management/student-list",
+          link: "/admin/student-management/student-list",
+        },
+      ],
+    },
+    {
+      label: "Profile",
+      key: "/admin/profile",
+      link: "/admin/profile",
+    },
+  ];
+
   const menuItemsByRole = {
     admin: [
+      // ...Account Management...
       {label: "Dashboard", key: "/admin", link: "/admin"},
       {
         label: "Account Management",
@@ -34,55 +91,9 @@ const Sidebar = () => {
           },
         ],
       },
-      {
-        label: "Campaign",
-        key: "campaign",
-        dropdown: [
-          {
-            label: "Campaign List",
-            key: "/admin/campaign/campaign-list",
-            link: "/admin/campaign/campaign-list",
-          },
-          {
-            label: "Create Campaign",
-            key: "/admin/campaign/create-campaign",
-            link: "/admin/campaign/create-campaign",
-          },
-          {
-            label: "Detail Campaign",
-            key: "/admin/campaign/detail-campaign",
-            link: "/admin/campaign/detail-campaign",
-          },
-          {
-            label: "History Campaign",
-            key: "/admin/campaign/history-campaign",
-            link: "/admin/campaign/history-campaign",
-          },
-        ],
-      },
-      {
-        label: "Student Management",
-        key: "student-management",
-        dropdown: [
-          {
-            label: "Add Student",
-            key: "/admin/student-management/add-student",
-            link: "/admin/student-management/add-student",
-          },
-          {
-            label: "Student List",
-            key: "/admin/student-management/student-list",
-            link: "/admin/student-management/student-list",
-          },
-        ],
-      },
-      {
-        label: "Profile",
-        key: "/admin/profile",
-        link: "/admin/profile",
-      },
+      ...adminMenu.slice(1), // các mục còn lại giống manager
     ],
-
+    manager: adminMenu, // manager dùng menu này, không có Account Management
     nurse: [
       {label: "Dashboard", key: "/nurse", link: "/nurse"},
       {
@@ -279,8 +290,35 @@ const Sidebar = () => {
     }
   });
 
+  // Thêm hàm logout
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("role");
+    dispatch(setUserInfo({role: null, userId: null}));
+    navigate("/login");
+  };
+
   return (
     <div style={{width: 250, height: "100vh", background: "#fff"}}>
+      {/* Hiển thị Hello, role và Logout nếu là admin, manager, nurse */}
+      {(role === "admin" || role === "manager" || role === "nurse") && (
+        <div
+          style={{
+            padding: "16px",
+            borderBottom: "1px solid #eee",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <span style={{fontWeight: "bold"}}>Hello, {role}</span>
+          <button onClick={handleLogout} className="logout">
+            Logout
+          </button>
+        </div>
+      )}
       <Menu
         mode="inline"
         selectedKeys={selectedKeys}

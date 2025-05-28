@@ -13,14 +13,53 @@
   --font-lg: 18px;
   --font-xl: 20px;
 }
-a {         
-  color: var(--black-color);
-}
 p {
   margin-bottom: 0;
 }
-ul {
+ul,
+ol {
   margin-bottom: 0;
+  list-style-type: none;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+input {
+  color: var(--gray-color);
+  border: 0;
+  outline: none;
+}
+
+a {
+  color: var(--black-color);
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  object-fit: cover;
+  /* object-fit giữ ảnh ko méo */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+}
+
+hr {
+  border: 1px solid var(--price);
 }
 .active-link {
   text-decoration: none;
@@ -30,6 +69,8 @@ ul {
   }
 }
 .header {
+  box-shadow: 0 4px 16px 0 rgba(53, 83, 131, 0.1); // Bóng phía dưới header
+
   &__top {
     background-color: var(--primary-color);
   }

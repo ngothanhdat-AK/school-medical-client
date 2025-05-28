@@ -1,79 +1,75 @@
 import React from "react";
 import "./index.scss";
-import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import {FaPhoneAlt, FaEnvelope, FaMapMarkerAlt} from "react-icons/fa";
 
 const index = () => {
   return (
-    <div className="contact-wrapper">
+    <div className="contact-wrapper flex flex-col justify-center align-items-center">
       <div className="contact-hero">
-        <h1>Contact Us</h1>
+        <h1>
+          <span className="contact-hero-icon">
+            <FaMapMarkerAlt size={32} color="#355383" />
+          </span>
+          Contact Us
+        </h1>
         <p>
-          At MEDICARE – School Medical Station of dtn2TT, we are committed to delivering quality
-          healthcare support and resources for students, parents, and school staff. Your health,
-          safety, and feedback matter deeply to us.
+          <span className="contact-highlight">
+            MEDICARE – School Medical Station of dtn2TT
+          </span>{" "}
+          is always ready to support the health of students, parents, and
+          teachers. We listen to all feedback to improve the quality of school
+          healthcare services.
         </p>
         <p>
-          Whether you need guidance on our medical services, have questions about appointments,
-          or simply want to leave us feedback to improve, our team is ready to help you.
-          Don't hesitate to reach out using the contact information below.
+          Don’t hesitate to contact us through the channels below for
+          consultation, appointment booking, or feedback!
         </p>
       </div>
 
       <div className="contact-info-box">
-        <div className="contact-section">
-          <h2><FaPhoneAlt className="icon" /> Phone</h2>
-          <p>Our hotline is open during business hours. For urgent medical concerns, please call us directly.</p>
-          <p className="highlight">000-000-000</p>
+        <div className="contact-info-row">
+          <div className="contact-section">
+            <div className="flex justify-center align-items-center gap-2">
+              <div className="contact-section-icon">
+                <FaPhoneAlt size={28} color="#355383" />
+              </div>
+              <h2>Hotline</h2>
+            </div>
+            <p>
+              Emergency medical support and health consultation during office
+              hours.
+            </p>
+            <p className="highlight">079-999-5828</p>
+          </div>
+          <div className="contact-section">
+            <div className="flex justify-center align-items-center gap-2">
+              <div className="contact-section-icon">
+                <FaEnvelope size={28} color="#355383" />
+              </div>
+              <h2>Email</h2>
+            </div>
+            <p>
+              Send questions, feedback, or administrative support requests.
+              Response within 24 hours.
+            </p>
+            <p className="highlight">gcteam2023@gmail.com</p>
+          </div>
+          <div className="contact-section">
+            <div className="flex justify-center align-items-center gap-2">
+              <div className="contact-section-icon">
+                <FaMapMarkerAlt size={28} color="#355383" />
+              </div>
+              <h2>Address</h2>
+            </div>
+            <p>
+              School medical office, dedicated to providing student healthcare.
+            </p>
+            <p className="highlight">4/48 Medical St, Ho Chi Minh City</p>
+          </div>
         </div>
-
-        <div className="contact-section">
-          <h2><FaEnvelope className="icon" /> Email</h2>
-          <p>
-            For non-urgent questions, suggestions, or administrative support, please email us. We aim
-            to respond within 24 hours on weekdays.
-          </p>
-          <p className="highlight">info@gmail.com</p>
-        </div>
-
-        <div className="contact-section">
-          <h2><FaMapMarkerAlt className="icon" /> Address</h2>
-          <p>
-            You can visit our station during operating hours. Our medical office is equipped with
-            basic healthcare services and staff trained in pediatric and school-based care.
-          </p>
-          <p className="highlight">123 Medical St, Thanh Pho Ho Chi Minh</p>
-        </div>
       </div>
-      
-      <div className="time">
-        <div className="working-hours">
-        <h2>Working Hours</h2>
-        <ul>
-          <li><strong>Monday – Friday:</strong> 08:00 AM – 05:00 PM</li>
-          <li><strong>Saturday & Sunday:</strong> Closed</li>
-          <li><strong>Emergency Support:</strong> Available via direct phone</li>
-        </ul>
-      </div>
-
-      <div className="note">
-        <p>
-          If you’re visiting us in person, please bring your student ID (or guardian card) for verification.
-          We also recommend calling in advance for medical advice or support.
-        </p>
-        <p>
-          For partnerships, volunteer inquiries, or school health program collaboration, kindly contact
-          our administration through the provided email.
-        </p>
-        <p>
-          Thank you for choosing MEDICARE as your trusted partner in health. Together, we strive
-          to create a safe, informed, and healthier school environment.
-        </p>
-      </div>
-      </div>
-
-      
     </div>
-  )
-}
+  );
+};
 
-export default index
+export default index;
