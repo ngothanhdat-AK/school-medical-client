@@ -1,0 +1,97 @@
+.contact-wrapper {
+  padding: 60px 80px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #1a2a47;
+  background-color: #f9f9f9;
+
+  .contact-hero {
+    text-align: center;
+    margin-bottom: 50px;
+
+    h1 {
+      font-size: 2.5rem;
+      color: #2a437c;
+    }
+
+    p {
+      margin-top: 15px;
+      font-size: 1.1rem;
+      color: #555;
+      max-width: 2000px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  .contact-info-box {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 40px;
+
+    .contact-section {
+      background: white;
+      padding: 30px;
+      border-left: 6px solid #2a437c;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      border-radius: 8px;
+
+      h2 {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+
+        .icon {
+          margin-right: 10px;
+          color: #2a437c;
+        }
+      }
+
+      p {
+        margin: 5px 0;
+        font-size: 1rem;
+        color: #333;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #2a437c;
+        margin-top: 5px;
+      }
+    }
+  }
+
+  
+    .time{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 40px;
+        margin-top: 40px;
+    }
+
+  .working-hours {
+    h2 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      padding-left: 20px;
+
+      li {
+        margin-bottom: 8px;
+        font-size: 1rem;
+        color: #444;
+      }
+    }
+  }
+
+  .note {
+    font-style: italic;
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.6;
+  }
+}
