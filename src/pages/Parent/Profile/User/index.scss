@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   padding: 40px 20px;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: "Segoe UI", sans-serif;
 
   .profile_image {
     display: flex;
@@ -23,6 +23,10 @@
     input[type="file"] {
       margin-bottom: 10px;
     }
+
+    &.no-upload::after {
+      display: none !important;
+    }
   }
 
   .profile_form {
@@ -37,33 +41,13 @@
 
     form > div {
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
       gap: 30px;
     }
 
     .profile_input_1,
-    .profile_input_2
-     {
-      flex: 1 1 45%;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-
-      label {
-        font-size: 14px;
-        font-weight: 500;
-        color: #333;
-      }
-
-      input {
-        padding: 10px 12px;
-        border-radius: 8px;
-        border: 1px solid #ccc;
-        background-color: #f9f9f9;
-      }
-    }
+    .profile_input_2,
     .profile_input_3 {
-      flex: 1 1 100%;
       display: flex;
       flex-direction: column;
       gap: 16px;
@@ -84,15 +68,31 @@
   }
 }
 
-// ✅ Responsive cho mobile
-@media (max-width: 768px) {
-  .profile_form form > div {
-    flex-direction: column;
+.buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+
+  button {
+    background: #fff;
+    color: #355383;
+    border: none;
+    border-radius: 8px;
+    min-width: 100px;
+    font-size: 1rem;
+    padding: 10px 0;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
   }
 
-  .profile_input_1,
-  .profile_input_2,
-  .profile_input_3 {
-    flex: 1 1 100%;
+  button:disabled {
+    background: #b0b8c9;
+    cursor: not-allowed;
+  }
+
+  button:hover:not(:disabled) {
+    background: #355383;
+    color: #fff;
   }
 }

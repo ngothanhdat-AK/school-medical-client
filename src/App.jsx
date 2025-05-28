@@ -10,6 +10,9 @@ import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 import ProtectedRoute from "./components/ProtectRoute/ProtectRoute";
 import MainLayout from "./components/MainLayout/MainLayout";
+import {useEffect} from "react";
+import {useDispatch} from "react-redux";
+import {setUserInfo} from "./redux/feature/userSlice";
 
 // Admin pages
 import AdminDashboard from "./pages/Admin/AdminDashboard";
@@ -47,9 +50,20 @@ import ParentCreateMedicalRegistration from "./pages/Parent/MedicalRegistration/
 import ParentMedicalRegistrationList from "./pages/Parent/MedicalRegistration/MediacalRegistrationList/MedicalRegistrationList";
 import ParentDetailMedicalRegistration from "./pages/Parent/MedicalRegistration/DetailMedicalRes/DetailMediacalRes";
 import ParentNotification from "./pages/Parent/Notification/Notification";
-import UserProfile from "./pages/Parent/Profile/UserProfile";
+import UserProfile from "./pages/Parent/Profile/User/UserProfile";
+import UpdateUserProfile from "./pages/Parent/Profile/Edit/UpdateUserProfile";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const role = localStorage.getItem("role");
+    const userId = localStorage.getItem("userId");
+    if (role && userId) {
+      dispatch(setUserInfo({role, userId}));
+    }
+  }, [dispatch]);
+
   return (
     <>
       <Routes>
@@ -113,25 +127,46 @@ function App() {
             />
             <Route path="notification" element={<ParentNotification />} />
             <Route path="profile" element={<UserProfile />} />
+            <Route path="profile/update" element={<UpdateUserProfile />} />
           </Route>
         </Route>
 
-        {/* Route dành cho Admin */}
+        {/* Route dành cho Admin và Manager */}
         <Route
           path="admin"
           element={
-            <ProtectedRoute allowedRoles={["admin"]}>
+            <ProtectedRoute allowedRoles={["admin", "manager"]}>
               <MainLayout />
             </ProtectedRoute>
           }
         >
           <Route index element={<AdminDashboard />} />
+          {/* Chỉ admin mới được vào AccountManagement */}
           <Route
             path="account-management/create-update-user"
-            element={<CreateUpdateUser />}
+            element={
+              <ProtectedRoute allowedRoles={["admin"]}>
+                <CreateUpdateUser />
+              </ProtectedRoute>
+            }
           />
-          <Route path="account-management/list-user" element={<ListUser />} />
-          <Route path="account-management/user-form" element={<UserForm />} />
+          <Route
+            path="account-management/list-user"
+            element={
+              <ProtectedRoute allowedRoles={["admin"]}>
+                <ListUser />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="account-management/user-form"
+            element={
+              <ProtectedRoute allowedRoles={["admin"]}>
+                <UserForm />
+              </ProtectedRoute>
+            }
+          />
+          {/* Các route còn lại cho cả admin và manager */}
           <Route path="campaign/campaign-list" element={<CampaignList />} />
           <Route path="campaign/create-campaign" element={<CreateCampaign />} />
           <Route path="campaign/detail-campaign" element={<DetailCampaign />} />

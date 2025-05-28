@@ -1,0 +1,29 @@
+:root {
+  --primary-color: #355383;
+  --primary-color-light: #36588d;
+  --secondary-color: #159eec;
+  --white-color: #ffffff;
+  --wwhite-color-light: #fdfdfd;
+  --black-color: #000000;
+
+  --font-family: "Roboto", sans-serif;
+
+  --font-sm: 15px;
+  --font-md: 16px;
+  --font-lg: 18px;
+  --font-xl: 20px;
+}
+.logout {
+  background-color: var(--white-color);
+  color: var(--primary-color);
+  padding: 5px 20px;
+  font-size: var(--font-sm);
+  font-family: var(--font-family);
+  font-weight: 700;
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  &:hover {
+    background-color: var(--wwhite-color-light);
+    color: var(--primary-color-light);
+  }
+}

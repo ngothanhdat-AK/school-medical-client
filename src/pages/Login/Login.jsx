@@ -78,7 +78,7 @@ const Login = () => {
         } else if (role === "nurse") {
           navigate("/nurse");
         } else if (role === "parent") {
-          navigate("/parent");
+          navigate("/");
         } else {
           navigate("/");
         }

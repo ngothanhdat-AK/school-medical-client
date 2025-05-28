@@ -62,7 +62,7 @@ const Header = () => {
             </ul>
           </div>
         </div>
-        <div className="header__bottom flex justify-between items-center">
+        <div className="header__bottom flex justify-between items-center bg-white">
           <div className="header__bottom-image ml-10">
             <NavLink
               to="/"
@@ -126,7 +126,16 @@ const Header = () => {
           </nav>
 
           <div className="header__bottom-button flex justify-center items-center gap-4 mr-10">
-            {!token ? (
+            {token && role ? (
+              <div className="flex items-center gap-3">
+                <span style={{color: "#355383", fontWeight: "bold"}}>
+                  Hello, {role}
+                </span>
+                <button className="header__login" onClick={handleLogout}>
+                  Logout
+                </button>
+              </div>
+            ) : (
               <>
                 <div>
                   <NavLink
@@ -147,15 +156,6 @@ const Header = () => {
                   </NavLink>
                 </div>
               </>
-            ) : (
-              <div className="flex items-center gap-3">
-                <span style={{color: "#355383", fontWeight: "bold"}}>
-                  Hello, {role || "User"}
-                </span>
-                <button className="header__login" onClick={handleLogout}>
-                  Logout
-                </button>
-              </div>
             )}
           </div>
         </div>

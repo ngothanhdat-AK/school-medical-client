@@ -7,10 +7,8 @@ import Footer from "../Footer/Footer";
 function Layout() {
   return (
     <>
-      <Header />
-
-      <Outlet />
-
+      <Header style={{zIndex: 99}} />
+      <Outlet style={{zIndex: 1}} />
       <Footer />
     </>
   );

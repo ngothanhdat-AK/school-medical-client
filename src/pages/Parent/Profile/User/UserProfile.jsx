@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useState } from "react";
-import axiosInstance from "../../../api/axios";
+import React, {useEffect} from "react";
+import {useSelector} from "react-redux";
+import {useState} from "react";
+import axiosInstance from "../../../../api/axios";
 import "./index.scss";
+import {useNavigate} from "react-router-dom";
 
 const UserProfile = () => {
+  const navigate = useNavigate();
   // const [upload, setUpload] = useState(false);
   const [user, setUser] = useState(null);
   const storedUserId = localStorage.getItem("userId");
@@ -47,7 +49,7 @@ const UserProfile = () => {
   //     await axiosInstance.put(`/user-profile/${userId}`, {
   //       avatarUrl,
   //     });
-      
+
   //   }catch (error) {
   //     console.error("Error uploading file:", error);
   //   } finally{
@@ -56,43 +58,57 @@ const UserProfile = () => {
   // }
 
   return (
-  <>
-   { !user ? (<div>Loading...</div>) : (
-      <div className='profile_main'>
-      <div className='profile_image'>
-        {/* <input type="file" accept='image/*' onChange={handleUpload} /> */}
-        {/* {upload && <p>Uploading...</p>} */}
-        <img src={user.avatarUrl} alt="img2" />
-      </div>
-      <div className='profile_form'>
-        <h2>Hello {user.fullName}</h2>
-        <form action="">
-          <div>
-            <div className='profile_input_1'>
-              <label>Full Name</label>
-              <input type="text" name="fullName" value={user.fullName}  readOnly />
-
-              <label>Email Address</label>
-              <input type="email" name="email" value={user.email} readOnly />
-            </div>
-
-            <div className='profile_input_2'>
-              <label>Day of Birth</label>
-              <input type="date" name="dateOfBirth" value={user.dateOfBirth} readOnly />                     
-            </div>
-            <a href="">Edit</a>
-
-           
+    <>
+      {!user ? (
+        <div>Loading...</div>
+      ) : (
+        <div className="profile_main">
+          <div className="profile_image no-upload">
+            <img src={user.avatarUrl} alt="img2" />
           </div>
-        </form>
-      </div>
-    </div>
+          <div className="profile_form">
+            <h2>Hello {user.fullName}</h2>
+            <form action="">
+              <div>
+                <div className="profile_input_1">
+                  <label>Full Name</label>
+                  <input
+                    type="text"
+                    name="fullName"
+                    value={user.fullName}
+                    readOnly
+                  />
 
-    ) }
-    
-  
-  </>
-)
-}
+                  <label>Email Address</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={user.email}
+                    readOnly
+                  />
+                </div>
+
+                <div className="profile_input_2">
+                  <label>Day of Birth</label>
+                  <input
+                    type="date"
+                    name="dateOfBirth"
+                    value={user.dateOfBirth}
+                    readOnly
+                  />
+                </div>
+                <div className="buttons">
+                  <button type="button" onClick={() => navigate("update")}>
+                    Edit
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
 
 export default UserProfile;
