@@ -1,15 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;700&display=swap");
 
 .blog-page {
   background: #fff;
   min-height: 100vh;
+  max-width: 1440px;
+  margin: 50px auto;
   padding: 0;
-  font-family: 'Montserrat', sans-serif;
-  color: #133F76;
+  font-family: "Montserrat", sans-serif;
+  color: #133f76;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  margin-top: 1%;
 }
 
 .blog-container {
@@ -26,7 +27,7 @@
   .blog-title {
     font-weight: 900;
     font-size: 3.6rem;
-    color: #133F76;
+    color: #133f76;
     text-transform: uppercase;
     letter-spacing: 0.12em;
     user-select: none;
@@ -34,7 +35,7 @@
   }
 
   .blog-subtitle {
-    font-family: 'Lora', serif;
+    font-family: "Lora", serif;
     font-size: 1.25rem;
     color: #3a5486;
     opacity: 0.85;
@@ -45,6 +46,7 @@
 
 .blog-posts {
   width: 100%;
+  margin-bottom: 50px;
   padding: 0 24px;
 
   .MuiGrid-container {
@@ -59,22 +61,47 @@
     transition: box-shadow 0.3s;
   }
 
-  .MuiGrid-item:nth-child(1) { flex: 0 0 45%; max-width: 45%; }
-  .MuiGrid-item:nth-child(2) { flex: 0 0 50%; max-width: 50%; }
-  .MuiGrid-item:nth-child(3) { flex: 0 0 45%; max-width: 45%; }
-  .MuiGrid-item:nth-child(4) { flex: 0 0 50%; max-width: 50%; }
-  .MuiGrid-item:nth-child(5) { flex: 0 0 45%; max-width: 45%; }
-  .MuiGrid-item:nth-child(6) { flex: 0 0 50%; max-width: 50%; }
-  .MuiGrid-item:nth-child(7) { flex: 0 0 45%; max-width: 45%; }
-  .MuiGrid-item:nth-child(n+8) { flex: 0 0 50%; max-width: 50%; }
+  .MuiGrid-item:nth-child(1) {
+    flex: 0 0 45%;
+    max-width: 45%;
+  }
+  .MuiGrid-item:nth-child(2) {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .MuiGrid-item:nth-child(3) {
+    flex: 0 0 45%;
+    max-width: 45%;
+  }
+  .MuiGrid-item:nth-child(4) {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .MuiGrid-item:nth-child(5) {
+    flex: 0 0 45%;
+    max-width: 45%;
+  }
+  .MuiGrid-item:nth-child(6) {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .MuiGrid-item:nth-child(7) {
+    flex: 0 0 45%;
+    max-width: 45%;
+  }
+  .MuiGrid-item:nth-child(n + 8) {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
 
   .blog-card {
     border-radius: 24px;
     background: linear-gradient(145deg, #e7f1ff, #f2f7ff);
     border: 1px solid rgba(19, 63, 118, 0.12);
     box-shadow: 0 6px 12px rgba(19, 63, 118, 0.12),
-                0 3px 6px rgba(19, 63, 118, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+      0 3px 6px rgba(19, 63, 118, 0.08);
+    transition: box-shadow 0.18s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.18s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -84,9 +111,8 @@
 
     &:hover,
     &:focus-visible {
-      transform: translateY(-6px) scale(1.015);
-      box-shadow: 0 12px 20px rgba(19, 63, 118, 0.18),
-                  0 6px 12px rgba(19, 63, 118, 0.12);
+      box-shadow: 0 8px 24px rgba(19, 63, 118, 0.18);
+      transform: translateY(-2px) scale(1.012);
       outline: none;
     }
 
@@ -118,7 +144,7 @@
     }
 
     .blog-post-excerpt {
-      font-family: 'Lora', serif;
+      font-family: "Lora", serif;
       font-size: 1rem;
       color: #3a4d7a;
       line-height: 1.5;
@@ -130,7 +156,7 @@
       transition: max-height 0.3s ease;
 
       &::after {
-        content: '';
+        content: "";
         position: absolute;
         bottom: 0;
         left: 0;
@@ -160,24 +186,24 @@
     }
 
     .read-more-btn {
-      align-self: flex-start;
+      align-self: center;
       padding: 6px 16px;
       font-size: 0.85rem;
       font-weight: 600;
       color: #fff;
-      background: #133F76;
+      background: linear-gradient(135deg, #133f76, #1e58b8);
       border-radius: 20px;
       text-transform: uppercase;
       box-shadow: 0 4px 10px rgba(19, 63, 118, 0.3);
-      transition: background 0.3s, box-shadow 0.3s, color 0.3s;
+      transition: background 0.3s, box-shadow 0.3s, color 0.3s,
+        transform 0.18s cubic-bezier(0.4, 0, 0.2, 1);
       border: none;
       outline: none;
       cursor: pointer;
 
       &:hover {
-        background: linear-gradient(135deg, #133F76, #1e58b8);
-        box-shadow: 0 6px 14px rgba(19, 63, 118, 0.35);
-        color: #ffd700;
+        background: linear-gradient(135deg, #1e58b8, #133f76);
+        transform: scale(1.035);
       }
     }
   }
