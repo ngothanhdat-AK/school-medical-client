@@ -27,35 +27,8 @@ const UserProfile = () => {
         console.error("Error fetching user profile:", error);
       }
     };
-
     fetchUserProfile();
   }, [userId]);
-
-  // const handleUpload = async (e) => {
-  //   const file = e.target.files[0];
-  //   const formData = new FormData();
-  //   formData.append("file", file);
-  //   formData.append("upload_preset", "SchoolManagement");
-  //   setUpload(true);
-  //   try{
-  //     const res = await fetch(`https://api.cloudinary.com/v1_1/dcmms8d19/image/upload`, {
-  //       method: "POST",
-  //       body: formData,
-  //     });
-  //     const data = await res.json();
-  //     const avatarUrl = data.secure_url;
-  //     console.log("File uploaded successfully:", data);
-  //     setUser(prev => ({...prev, avatarUrl }));
-  //     await axiosInstance.put(`/user-profile/${userId}`, {
-  //       avatarUrl,
-  //     });
-
-  //   }catch (error) {
-  //     console.error("Error uploading file:", error);
-  //   } finally{
-  //     setUpload(false);
-  //   }
-  // }
 
   return (
     <>
@@ -81,9 +54,9 @@ const UserProfile = () => {
 
                   <label>Email Address</label>
                   <input
-                    type="email"
-                    name="email"
-                    value={user.email}
+                    type="emailAddress"
+                    name="emailAddress"
+                    value={user.emailAddress}
                     readOnly
                   />
                 </div>

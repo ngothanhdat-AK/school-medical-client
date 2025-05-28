@@ -22,6 +22,7 @@ const UpdateUserProfile = () => {
     try {
       const res = await axiosInstance.get(`/user-profile/${userId}`);
       setUser(res.data);
+      console.log("User profile fetched:", res.data);
     } catch (error) {
       setError(error);
     }
@@ -42,7 +43,7 @@ const UpdateUserProfile = () => {
     setError(null);
     try {
       const res = await fetch(
-        "https://api.cloudinary.com/v1_1/darnrlpag/image/upload",
+        "https://api.cloudinary.com/v1_1/dcmms8d19/image/upload",
         {
           method: "POST",
           body: formData,
@@ -63,13 +64,15 @@ const UpdateUserProfile = () => {
   const handleSave = async () => {
     setSaving(true);
     setError(null);
+   
     try {
       await axiosInstance.put(`/user-profile/${userId}`, {
         fullName: user.fullName,
-        email: user.email,
+        emailAddress: user.emailAddress,
         dateOfBirth: user.dateOfBirth,
         avatarUrl: user.avatarUrl,
       });
+       
       Swal.fire({
         icon: "success",
         title: "Update Successfully!",
@@ -139,9 +142,9 @@ const UpdateUserProfile = () => {
 
                 <label>Email Address</label>
                 <input
-                  type="email"
-                  name="email"
-                  value={user.email || ""}
+                  type="emailAddress"
+                  name="emailAddress"
+                  value={user.emailAddress || ""}
                   onChange={handleChange}
                   required
                 />
