@@ -170,7 +170,7 @@ const UpdateUserProfile = () => {
         timer: 1500,
         showConfirmButton: false,
       });
-      navigate("/parent/profile");
+      navigate("/admin/profile");
     } catch (error) {
       setError(error);
       Swal.fire({
