@@ -80,8 +80,9 @@ const UserProfile = () => {
               <label>Day of Birth</label>
               <input type="date" name="dateOfBirth" value={user.dateOfBirth} readOnly />                     
             </div>
+            <a href="">Edit</a>
 
-            
+           
           </div>
         </form>
       </div>
