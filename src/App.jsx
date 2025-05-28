@@ -25,6 +25,8 @@ import DetailCampaign from "./pages/Admin/Campaign/DetailCampaign/DetailCampaign
 import HistoryCampaign from "./pages/Admin/Campaign/HistoryCampaign/HistoryCampaign";
 import AddStudent from "./pages/Admin/StudentManagement/AddStudent/AddStudent";
 import StudentList from "./pages/Admin/StudentManagement/StudentList/StudentList";
+import UserProfileAdmin from "./pages/Admin/Profile/User/UserProfile";
+import UpdateUserProfileAdmin from "./pages/Admin/Profile/Edit/UpdateUserProfile";
 
 // Nurse pages
 import NurseDashboard from "./pages/Nurse/Dashboard";
@@ -36,6 +38,8 @@ import NurseHistoryCampaign from "./pages/Nurse/Campaign/HistoryCampaign/History
 import RecordForm from "./pages/Nurse/Campaign/RecordForm/RecordForm";
 import CreateMedicalEvent from "./pages/Nurse/MediacalEvent/CreateMedicalEvent/CreateMedicalEvent";
 import MedicalEventList from "./pages/Nurse/MediacalEvent/MedicalEventList/MedicalEventList";
+import UserProfileNurse from "./pages/Nurse/Profile/User/UserProfile";
+import UpdateUserProfileNurse from "./pages/Nurse/Profile/Edit/UpdateUserProfile";
 
 // Parent pages
 import ParentHome from "./pages/Parent/ParentHome";
@@ -182,7 +186,8 @@ function App() {
             path="student-management/student-list"
             element={<StudentList />}
           />
-          <Route path="profile" element={<UserProfile />} />
+          <Route path="profile" element={<UserProfileAdmin />} />
+          <Route path="profile/update" element={<UpdateUserProfileAdmin />} />
         </Route>
 
         {/* Route dành cho Nurse */}
@@ -224,7 +229,8 @@ function App() {
             path="medical-event/medical-event-list"
             element={<MedicalEventList />}
           />
-          <Route path="profile" element={<UserProfile />} />
+          <Route path="profile" element={<UserProfileNurse />} />
+          <Route path="profile/update" element={<UpdateUserProfileNurse />} />
         </Route>
       </Routes>
     </>
