@@ -1,0 +1,146 @@
+.vaccination-container {
+  background-color: #ffffff;
+  color: #355383;
+  padding: 2rem;
+  max-width: 80rem;
+  margin: 0 auto;
+  min-height: 100vh;
+  margin-top: 1em;
+
+  h1 {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #355383;
+    animation: fadeInDown 0.8s ease-out;
+  }
+
+  p {
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-left: 40px;
+  }
+
+  section.vaccine-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background: #f0f4fa;
+    padding: 1.5rem;
+    border-radius: 1.25rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    animation: fadeInUp 0.8s ease;
+     transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
+  
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    z-index: 1;
+  }
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+
+    img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 1rem;
+      object-fit: cover;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .info {
+      flex: 1;
+
+      h2 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: #355383;
+      }
+
+      ul {
+        padding-left: 1.25rem;
+        list-style: disc;
+        color: #4a4a4a;
+
+        li {
+          margin-bottom: 0.4rem;
+        }
+      }
+    }
+  }
+
+  .highlight-section {
+    background-color: #fef3f3;
+    border-radius: 1.25rem;
+    padding: 1.5rem;
+     transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
+  
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    z-index: 1;
+  }
+
+    h2 {
+      color: #c53030;
+      margin-bottom: 0.75rem;
+    }
+
+    ul {
+      padding-left: 1.25rem;
+      color: #4a4a4a;
+
+      li {
+        margin-bottom: 0.4rem;
+      }
+    }
+  }
+
+  .note {
+    font-style: italic;
+    font-size: 0.875rem;
+    color: #666;
+    margin-top: 1.5rem;
+  }
+
+  .hidden {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s ease-out;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

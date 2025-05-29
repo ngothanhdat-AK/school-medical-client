@@ -1,6 +1,19 @@
 .contact-wrapper {
   min-height: 70vh;
-  padding: 40px 0 60px 0;
+  padding: 35px 0 60px 0;
+  animation: fadeInPage 0.6s ease forwards;
+  
+  @keyframes fadeInPage {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+  
 
   .contact-hero {
     max-width: 1000px;
