@@ -1,18 +1,15 @@
 import React from "react";
 import Carousel from "../../components/Carousel/Carousel";
-import "./index.scss"; // Assuming you have a HomePage.scss for styles
-import slide1 from "../../assets/imagecarousel/banner_doctor 1.svg"; // Adjust the path as necessary
-import slide2 from "../../assets/imagecarousel/banner_doctor 1.svg"; // Adjust the path as necessary
+import "./index.scss";
+import slide1 from "../../assets/images/healt1.svg";
+import slide2 from "../../assets/images/healt2.svg";
 import news1 from "../../assets/news/news1.svg";
 import news2 from "../../assets/news/news2.svg";
 import news3 from "../../assets/news/news3.svg";
 import news4 from "../../assets/news/news4.svg";
-import {GiBandageRoll} from "react-icons/gi";
-import {GiNestedHearts} from "react-icons/gi";
-import {MdHealthAndSafety} from "react-icons/md";
-import {MdBloodtype} from "react-icons/md";
+import {GiBandageRoll, GiNestedHearts} from "react-icons/gi";
+import {MdHealthAndSafety, MdBloodtype} from "react-icons/md";
 import {GoDotFill} from "react-icons/go";
-import {FaEye, FaHeart} from "react-icons/fa";
 import {CiHeart} from "react-icons/ci";
 import {IoEyeOutline} from "react-icons/io5";
 
@@ -20,7 +17,7 @@ function HomePage() {
   return (
     <>
       <div className="">
-        <div className="home__carousel">
+        <div className="home__carousel ">
           <Carousel autoplay />
         </div>
         <div className="container">
@@ -161,10 +158,16 @@ function HomePage() {
                 </div>
                 <div className="home__services-card-content">
                   <span className="home__services-date">
-                    Monday 05, September 2021 | By Author
+                    24 April 2022 | Editor WHO
                   </span>
                   <h3 className="home__services-card-title">
-                    Global School-based Student Health Survey (GSHS 2019)
+                    <a
+                      href="https://www.who.int/publications/i/item/9789290619376"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Global School-based Student Health Survey (GSHS 2019)
+                    </a>
                   </h3>
                   <div className="home__services-card-meta">
                     <span className="flex gap-2">
@@ -188,10 +191,17 @@ function HomePage() {
                 </div>
                 <div className="home__services-card-content">
                   <span className="home__services-date">
-                    Monday 05, September 2021 | By Author
+                    September 4th 2018 | By David H. Foster
                   </span>
                   <h3 className="home__services-card-title">
-                    This Article’s Title goes Here, but not too long.
+                    <a
+                      href="https://iris.who.int/handle/10665/344683"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      What is the effectiveness of the health promoting schools
+                      approach?
+                    </a>
                   </h3>
                   <div className="home__services-card-meta">
                     <span className="flex gap-2">
@@ -218,7 +228,14 @@ function HomePage() {
                     Monday 05, September 2021 | By Author
                   </span>
                   <h3 className="home__services-card-title">
-                    This Article’s Title goes Here, but not too long.
+                    <a
+                      href="https://www.cdc.gov/assessing-improving-school-health/nutrition-pa/index.html"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Evidence-Based Strategies for School Nutrition and
+                      Physical Activity
+                    </a>
                   </h3>
                   <div className="home__services-card-meta">
                     <span className="flex gap-2">
@@ -245,7 +262,14 @@ function HomePage() {
                     Monday 05, September 2021 | By Author
                   </span>
                   <h3 className="home__services-card-title">
-                    This Article’s Title goes Here, but not too long.
+                    <a
+                      href="https://pubmed.ncbi.nlm.nih.gov/33818772/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Interventions for Improving the Health of School-Aged
+                      Children and Adolescents
+                    </a>
                   </h3>
                   <div className="home__services-card-meta">
                     <span className="flex gap-2">

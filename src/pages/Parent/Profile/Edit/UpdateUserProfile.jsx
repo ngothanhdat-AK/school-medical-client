@@ -20,7 +20,7 @@ const UpdateUserProfile = () => {
       return;
     }
     try {
-      const res = await axiosInstance.get(`/user-profile/${userId}`);
+      const res = await axiosInstance.get(`/api/user-profile/${userId}`);
       setUser(res.data);
     } catch (error) {
       setError(error);
@@ -156,7 +156,7 @@ const UpdateUserProfile = () => {
     setError(null);
 
     try {
-      await axiosInstance.put(`/user-profile/${userId}`, {
+      await axiosInstance.put(`/api/user-profile/${userId}`, {
         fullName: user.fullName,
         emailAddress: user.emailAddress,
         dateOfBirth: user.dateOfBirth,

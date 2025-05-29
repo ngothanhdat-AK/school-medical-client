@@ -92,7 +92,7 @@ const Header = () => {
                   style={{textDecoration: "none"}}
                   className={({isActive}) => (isActive ? "active-link" : "")}
                 >
-                  Health Resources
+                  Vaccines
                 </NavLink>
               </li>
               <li className="header__bottom-item">

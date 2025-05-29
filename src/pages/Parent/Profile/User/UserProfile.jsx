@@ -20,7 +20,7 @@ const UserProfile = () => {
     }
     const fetchUserProfile = async () => {
       try {
-        const response = await axiosInstance.get(`/user-profile/${userId}`);
+        const response = await axiosInstance.get(`/api/user-profile/${userId}`);
         setUser(response.data);
         console.log("User profile fetched successfully:", response.data);
       } catch (error) {
