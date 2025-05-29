@@ -2,7 +2,7 @@ import axios from "axios";
 
 // API public - không cần token
 const axiosInstance = axios.create({
-  baseURL: "https://localhost:7009/api",
+  baseURL: "https://localhost:7009",
   headers: {
     "Content-Type": "application/json",
   },

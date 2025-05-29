@@ -75,19 +75,9 @@ const Sidebar = () => {
         key: "account-management",
         dropdown: [
           {
-            label: "Create / Update User",
-            key: "/admin/account-management/create-update-user",
-            link: "/admin/account-management/create-update-user",
-          },
-          {
             label: "List User",
             key: "/admin/account-management/list-user",
             link: "/admin/account-management/list-user",
-          },
-          {
-            label: "User Form",
-            key: "/admin/account-management/user-form",
-            link: "/admin/account-management/user-form",
           },
         ],
       },
