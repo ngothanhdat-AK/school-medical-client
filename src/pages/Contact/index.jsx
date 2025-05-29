@@ -3,6 +3,10 @@ import "./index.scss";
 import {FaPhoneAlt, FaEnvelope, FaMapMarkerAlt} from "react-icons/fa";
 
 const index = () => {
+
+ 
+ 
+  
   return (
     <div className="contact-wrapper flex flex-col justify-center align-items-center">
       <div className="contact-hero">
