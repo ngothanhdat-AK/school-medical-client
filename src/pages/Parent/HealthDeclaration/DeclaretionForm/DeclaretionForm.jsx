@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import {useSelector} from "react-redux";
 
 const DeclaretionForm = () => {
-  return (
-    <div>DeclaretionForm</div>
-  )
-}
+  const listStudentParent = useSelector(
+    (state) => state.listStudentParent.listStudentParent
+  );
 
-export default DeclaretionForm
+  console.log(listStudentParent);
+
+  return <div>DeclaretionForm</div>;
+};
+
+export default DeclaretionForm;

@@ -45,10 +45,9 @@ function UsersByRole() {
         PageSize: pageSize,
       };
 
-      const response = await axiosInstance.get(
-        `/api/users/roles/${encodeURIComponent(roleName)}`,
-        {params}
-      );
+      const response = await axiosInstance.get(`/api/users/roles/${roleName}`, {
+        params,
+      });
       // console.log(response.data.items);
       setUsers(response.data.items || []);
       setTotalCount(response.data.count || 0);
@@ -66,9 +65,11 @@ function UsersByRole() {
   }, [roleName, pageIndex, pageSize, fetchUsers]);
 
   // Lọc users theo searchText
-  const filteredUsers = users.filter((user) =>
-    user.fullName?.toLowerCase().includes(searchText.toLowerCase())
-  );
+  const filteredUsers = searchText
+    ? users.filter((user) =>
+        (user.fullName || "").toLowerCase().includes(searchText.toLowerCase())
+      )
+    : users;
 
   const handleDelete = async (userId) => {
     // console.log(`Deleting user with ID: ${userId.toUpperCase()}`);
@@ -93,6 +94,11 @@ function UsersByRole() {
       title: "Email",
       dataIndex: "emailAddress",
       key: "emailAddress",
+    },
+    {
+      title: "Phone Number",
+      dataIndex: "phoneNumber",
+      key: "phoneNumber",
     },
     {
       title: "Role",
@@ -239,7 +245,6 @@ function UsersByRole() {
         footer={null}
         title="Edit Staff Account"
         width={800}
-        destroyOnClose
       >
         <EditUser
           userId={editingUserId}
