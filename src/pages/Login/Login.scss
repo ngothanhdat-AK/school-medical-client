@@ -1,3 +1,4 @@
+
 .login_main {
   display: flex;
   justify-content: center;
@@ -85,8 +86,8 @@
   }
 }
 .terms-container {
-  display: flex;
-  align-items: center; /* Căn giữa theo chiều dọc */
-  justify-content: center; /* Căn đều các phần tử theo chiều ngang */
-  gap: 5px; /* Khoảng cách giữa các phần tử */
+  display: flex !important;
+  align-items: center !important; /* Căn giữa theo chiều dọc */
+  justify-content: center !important; /* Căn đều các phần tử theo chiều ngang */
+  gap: 5px !important; /* Khoảng cách giữa các phần tử */
 }

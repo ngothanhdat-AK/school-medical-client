@@ -1,5 +1,8 @@
 import React, {useState, useEffect, useCallback} from "react";
+import {Modal} from "antd";
 import axiosInstance from "../../../../api/axios";
+import CreateUser from "../CreateUser/CreateUser";
+import EditUser from "../EditUser/EditUser";
 import {
   Table,
   Select,
@@ -10,8 +13,7 @@ import {
   Button,
   Popconfirm,
 } from "antd";
-import {useNavigate} from "react-router-dom";
-import {PlusOutlined, SearchOutlined} from "@ant-design/icons";
+import {PlusOutlined, SearchOutlined, StopOutlined} from "@ant-design/icons";
 
 const ROLE_OPTIONS = [
   {label: "Parent", value: "parent"},
@@ -29,7 +31,9 @@ function UsersByRole() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [searchText, setSearchText] = useState("");
-  const navigate = useNavigate();
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [editingUserId, setEditingUserId] = useState(null);
 
   const fetchUsers = useCallback(async () => {
     setLoading(true);
@@ -101,41 +105,48 @@ function UsersByRole() {
       key: "dayOfBirth",
     },
     {
+      title: "Address",
+      dataIndex: "address",
+      key: "address",
+    },
+    {
       title: "Status",
       dataIndex: "status",
       key: "status",
-      render: (status) => (status ? "Active" : "Inactive"),
+      render: (status) => (status ? "Active" : "Banned"),
     },
     {
       title: "Action",
       key: "action",
       render: (_, record) => (
         <div style={{display: "flex", gap: 8}}>
-          <Button
-            size="middle"
-            style={{borderColor: "#355383"}}
-            variant="outlined"
-            onClick={() => {
-              // Lưu userId vào sessionStorage hoặc localStorage
-              localStorage.setItem("editUserId", record.userId);
-              navigate("/admin/account-management/edit-user");
-            }}
-          >
-            Edit
-          </Button>
+          {roleName !== "parent" && (
+            <Button
+              size="middle"
+              style={{borderColor: "#355383"}}
+              variant="outlined"
+              onClick={() => {
+                setEditingUserId(record.userId);
+                setShowEditModal(true);
+              }}
+            >
+              Edit
+            </Button>
+          )}
           <Popconfirm
-            title="Bạn có chắc muốn xóa user này?"
+            title="Are you sure you want to ban this user?"
             onConfirm={() => handleDelete(record.userId)}
             okText="Yes"
             cancelText="No"
           >
             <Button
               danger
-              size="middle"
-              style={{borderColor: "red"}}
               variant="outlined"
+              size="middle"
+              color="red"
+              icon={<StopOutlined />}
             >
-              Delete
+              Ban
             </Button>
           </Popconfirm>
         </div>
@@ -176,7 +187,7 @@ function UsersByRole() {
           style={{backgroundColor: "#355383"}}
           size="middle"
           icon={<PlusOutlined />}
-          onClick={() => navigate("/admin/account-management/create-user")}
+          onClick={() => setShowCreateModal(true)}
         >
           Create
         </Button>
@@ -206,6 +217,38 @@ function UsersByRole() {
           onChange={(page) => setPageIndex(page)}
         />
       </div>
+
+      <Modal
+        open={showCreateModal}
+        onCancel={() => setShowCreateModal(false)}
+        footer={null}
+        title="Create Staff Account"
+        width={800}
+      >
+        <CreateUser
+          onSuccess={() => {
+            setShowCreateModal(false);
+            fetchUsers();
+          }}
+        />
+      </Modal>
+
+      <Modal
+        open={showEditModal}
+        onCancel={() => setShowEditModal(false)}
+        footer={null}
+        title="Edit Staff Account"
+        width={800}
+        destroyOnClose
+      >
+        <EditUser
+          userId={editingUserId}
+          onSuccess={() => {
+            setShowEditModal(false);
+            fetchUsers();
+          }}
+        />
+      </Modal>
     </div>
   );
 }

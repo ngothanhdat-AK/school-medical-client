@@ -70,6 +70,15 @@ const UserProfile = () => {
                     readOnly
                   />
                 </div>
+                <div className="profile_input_1">
+                  <label>Address</label>
+                  <input
+                    type="text"
+                    name="address"
+                    value={user.address}
+                    readOnly
+                  />
+                </div>
                 <div className="buttons">
                   <button type="button" onClick={() => navigate("update")}>
                     Edit
