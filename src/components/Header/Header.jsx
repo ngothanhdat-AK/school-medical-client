@@ -25,7 +25,7 @@ const Header = () => {
             <img src={HeaderLogoTop} alt="Medical Logo Top" />
           </div>
           <div className="header__top-right">
-            <ul className="header__top-right-list flex">
+            <ul className="header__top-right-list">
               <li className="header__top-right-item flex items-center gap-3 mr-7">
                 <img
                   className="m-w-[100%] h-[35px]"
@@ -33,7 +33,7 @@ const Header = () => {
                   alt="Call Icon"
                 />
                 <div>
-                  <p className="text-white">Emergency</p>
+                  <p className="text-white m-0">Emergency</p>
                   <p className="header__text">(237) 681-812-255</p>
                 </div>
               </li>
@@ -44,7 +44,7 @@ const Header = () => {
                   alt="Clock Icon"
                 />
                 <div>
-                  <p className="text-white">Working Hours</p>
+                  <p className="text-white m-0">Working Hours</p>
                   <p className="header__text">Mon - Fri: 8:00 AM - 5:00 PM</p>
                 </div>
               </li>
@@ -55,7 +55,7 @@ const Header = () => {
                   alt="Location Icon"
                 />
                 <div>
-                  <p className="text-white">Location</p>
+                  <p className="text-white m-0">Location</p>
                   <p className="header__text">123 Medical St, Health City</p>
                 </div>
               </li>
