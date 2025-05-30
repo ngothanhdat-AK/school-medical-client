@@ -1,0 +1,66 @@
+.profile_main {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px 0 rgba(53, 83, 131, 0.13);
+  padding: 40px 32px;
+}
+
+.profile_form {
+  width: 100%;
+}
+
+.profile_input_1 {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.profile_input_1 label {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.profile_input_1 input,
+.profile_input_1 select {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.profile_input_1 input:focus,
+.profile_input_1 select:focus {
+  outline: none;
+  border-color: #355383;
+}
+
+.buttons {
+  margin-top: 24px;
+  display: flex;
+  gap: 16px;
+}
+
+.buttons button {
+  padding: 8px 24px;
+  border-radius: 8px;
+  border: none;
+  background: #486ba5 !important;
+  color: #fff !important;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.buttons button:hover,
+.buttons button:focus {
+  background: #355383 !important;
+  color: #fff !important;
+}
+
+.input-error {
+  color: #e74c3c;
+  margin-top: 10px;
+  font-size: 15px;
+}

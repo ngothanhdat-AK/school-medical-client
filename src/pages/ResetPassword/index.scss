@@ -2,21 +2,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 75vh;
   background: #fff;
   padding: 20px;
-  
 
   .reset_form {
-     position: relative;
     width: 100%;
-    max-width: 400px;
+    max-width: 600px;
     padding: 30px;
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     text-align: center;
     font-family: "Segoe UI", sans-serif;
+
+    &__input-password {
+      position: relative;
+    }
 
     .reset_name {
       font-size: 22px;
@@ -25,7 +27,6 @@
     }
 
     .reset_message {
-       
       .error {
         color: #e74c3c;
         font-size: 14px;
@@ -70,8 +71,8 @@
 
       .reset_form__eye {
         position: absolute;
-        top: 100px;
-        right: 16px;
+        top: 5px;
+        right: 5px;
         z-index: 1;
       }
 
@@ -108,15 +109,6 @@
           text-decoration: underline;
         }
       }
-    }
-  }
-}
-
-@media (max-width: 480px) {
-  .reset_form {
-    padding: 20px;
-    .reset_name {
-      font-size: 20px;
     }
   }
 }

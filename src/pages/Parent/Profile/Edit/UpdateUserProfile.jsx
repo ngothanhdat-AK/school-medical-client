@@ -156,12 +156,16 @@ const UpdateUserProfile = () => {
     setError(null);
 
     try {
-      await axiosInstance.put(`/api/user-profile/${userId}`, {
+      const payload = {
         fullName: user.fullName,
         emailAddress: user.emailAddress,
         dateOfBirth: user.dateOfBirth,
         avatarUrl: user.avatarUrl,
-      });
+        address: user.address,
+      };
+      console.log("PUT payload:", payload);
+
+      await axiosInstance.put(`/api/user-profile/${userId}`, payload);
 
       await Swal.fire({
         icon: "success",
@@ -244,6 +248,7 @@ const UpdateUserProfile = () => {
                 {formErrors.emailAddress && (
                   <span className="input-error">{formErrors.emailAddress}</span>
                 )}
+
                 <label>Date of Birth</label>
                 <input
                   type="date"
@@ -254,6 +259,18 @@ const UpdateUserProfile = () => {
                 />
                 {formErrors.dateOfBirth && (
                   <span className="input-error">{formErrors.dateOfBirth}</span>
+                )}
+
+                <label>Address</label>
+                <input
+                  type="text"
+                  name="address"
+                  value={user.address || ""}
+                  onChange={handleChange}
+                  required
+                />
+                {formErrors.address && (
+                  <span className="input-error">{formErrors.address}</span>
                 )}
               </div>
 

@@ -147,11 +147,11 @@ const Login = () => {
 
             <div className="login_form__terms">
               <div className="terms-container">
-                <p>By continuing, you agree to the </p>
+                <p className="m-0">By continuing, you agree to the </p>
                 <span>
                   <a href="">Terms of use</a>
                 </span>
-                <p> and </p>
+                <p className="m-0"> and </p>
                 <span>
                   <a href="">Privacy Policy</a>
                 </span>
