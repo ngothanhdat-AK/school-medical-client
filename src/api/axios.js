@@ -19,6 +19,23 @@ axiosInstance.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
+export const axiosFormData = axios.create({
+  baseURL: "https://localhost:7009/api",
+});
+
+axiosFormData.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      config.headers["Authorization"] = `Bearer ${token}`;
+    }
+
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
+
 export default axiosInstance;
 
 
