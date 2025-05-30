@@ -53,7 +53,7 @@ const MainLayout = () => {
                   ? "50px"
                   : "20px",
               background: "none",
-              zIndex: 0,
+              zIndex: 1,
             }}
           >
             <Outlet />

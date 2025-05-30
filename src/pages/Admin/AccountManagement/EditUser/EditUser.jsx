@@ -4,39 +4,34 @@ import axiosInstance from "../../../../api/axios";
 import "./index.scss";
 
 const initialState = {
-  phoneNumber: "",
   fullName: "",
-  email: "",
-  password: "",
-  roleName: "",
+  dateOfBirth: "",
+  avatarUrl: "",
+  emailAddress: "",
+  address: "",
 };
-
-const ROLE_OPTIONS = [
-  {value: "manager", label: "Manager"},
-  {value: "nurse", label: "Nurse"},
-];
 
 const UserForm = ({userId, onSuccess}) => {
   const [form, setForm] = useState(initialState);
   const [error, setError] = useState(null);
   const [saving, setSaving] = useState(false);
+  const [formErrors, setFormErrors] = useState({});
 
   useEffect(() => {
-    // Lấy userId từ localStorage nếu không truyền qua props
     const id = userId || localStorage.getItem("editUserId");
     if (!id) return;
     const fetchUser = async () => {
       try {
         const res = await axiosInstance.get(`/api/user-profile/${id}`);
         setForm({
-          phoneNumber: res.data.phoneNumber || "",
           fullName: res.data.fullName || "",
-          email: res.data.email || "",
-          password: "", // Không show password cũ
-          roleName: res.data.roleName || "",
+          dateOfBirth: res.data.dateOfBirth?.split("T")[0] || "",
+          avatarUrl: res.data.avatarUrl || "",
+          emailAddress: res.data.emailAddress || "",
+          address: res.data.address || "",
         });
       } catch (err) {
-        console.log(err);
+        console.error("Error fetching user data:", err);
         setError("Failed to fetch user data.");
       }
     };
@@ -48,20 +43,63 @@ const UserForm = ({userId, onSuccess}) => {
     setForm((prev) => ({...prev, [name]: value}));
   };
 
+  const validate = () => {
+    const errors = {};
+    if (!form.fullName || form.fullName.trim().length < 2) {
+      errors.fullName = "Full Name is required (at least 2 characters)";
+    }
+    // Email phải có @gmail.com hoặc @fpt.edu.vn
+    const allowedEmailDomains = [
+      "@gmail.com",
+      "@fpt.edu.vn",
+      "@student.fpt.edu.vn",
+      "@fe.edu.vn",
+      "@fpt.com.vn",
+      // Thêm các đuôi khác nếu cần
+    ];
+    const isValidDomain = allowedEmailDomains.some((domain) =>
+      form.emailAddress.endsWith(domain)
+    );
+    if (!form.emailAddress || !isValidDomain) {
+      errors.emailAddress = "Email must end with a valid domain";
+    }
+    // Date of birth phải là ngày quá khứ
+    if (!form.dateOfBirth) {
+      errors.dateOfBirth = "Date of Birth is required";
+    } else {
+      const today = new Date();
+      const dob = new Date(form.dateOfBirth);
+      today.setHours(0, 0, 0, 0);
+      dob.setHours(0, 0, 0, 0);
+      if (dob >= today) {
+        errors.dateOfBirth = "Date of Birth is invalid";
+      }
+    }
+    return errors;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSaving(true);
     setError(null);
 
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setFormErrors(validationErrors);
+      setSaving(false);
+      return;
+    }
+    setFormErrors({});
+
     try {
       await axiosInstance.put(
-        `/api/accounts/${userId || localStorage.getItem("editUserId")}`,
+        `/api/user-profile/${userId || localStorage.getItem("editUserId")}`,
         {
-          phoneNumber: form.phoneNumber,
           fullName: form.fullName,
-          email: form.email,
-          password: form.password, // Nếu không đổi password, backend nên bỏ qua nếu rỗng
-          roleName: form.roleName,
+          dateOfBirth: form.dateOfBirth,
+          avatarUrl: form.avatarUrl,
+          emailAddress: form.emailAddress,
+          address: form.address,
         }
       );
       await Swal.fire({
@@ -101,48 +139,45 @@ const UserForm = ({userId, onSuccess}) => {
               onChange={handleChange}
               required
             />
+            {formErrors.fullName && (
+              <div className="input-error">{formErrors.fullName}</div>
+            )}
 
-            <label>Email</label>
+            <label>Date of Birth</label>
+            <input
+              type="date"
+              name="dateOfBirth"
+              value={form.dateOfBirth}
+              onChange={handleChange}
+              required
+            />
+            {formErrors.dateOfBirth && (
+              <div className="input-error">{formErrors.dateOfBirth}</div>
+            )}
+
+            <label>Email Address</label>
             <input
               type="email"
-              name="email"
-              value={form.email}
+              name="emailAddress"
+              value={form.emailAddress}
               onChange={handleChange}
               required
             />
+            {formErrors.emailAddress && (
+              <div className="input-error">{formErrors.emailAddress}</div>
+            )}
 
-            <label>Phone Number</label>
+            <label>Address</label>
             <input
               type="text"
-              name="phoneNumber"
-              value={form.phoneNumber}
+              name="address"
+              value={form.address}
               onChange={handleChange}
               required
             />
-
-            <label>Password</label>
-            <input
-              type="password"
-              name="password"
-              value={form.password}
-              onChange={handleChange}
-              placeholder="Leave blank to keep current password"
-            />
-
-            <label>Role</label>
-            <select
-              name="roleName"
-              value={form.roleName}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Select role</option>
-              {ROLE_OPTIONS.map((role) => (
-                <option key={role.value} value={role.value}>
-                  {role.label}
-                </option>
-              ))}
-            </select>
+            {formErrors.address && (
+              <div className="input-error">{formErrors.address}</div>
+            )}
           </div>
           <div className="buttons">
             <button type="submit" disabled={saving}>
