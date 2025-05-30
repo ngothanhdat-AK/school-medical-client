@@ -24,7 +24,7 @@ function UsersByRole() {
   const [roleName, setRoleName] = useState("parent");
   const [users, setUsers] = useState([]);
   const [pageIndex, setPageIndex] = useState(1);
-  const pageSize = 10; // Số lượng người dùng trên mỗi trang
+  const pageSize = 10;
   const [totalCount, setTotalCount] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -42,10 +42,10 @@ function UsersByRole() {
       };
 
       const response = await axiosInstance.get(
-        `/roles/${encodeURIComponent(roleName)}`,
+        `/api/users/roles/${encodeURIComponent(roleName)}`,
         {params}
       );
-      console.log(response.data.items);
+      // console.log(response.data.items);
       setUsers(response.data.items || []);
       setTotalCount(response.data.count || 0);
     } catch (err) {
