@@ -150,7 +150,7 @@ const Login = () => {
                 }}
                 onClick={() => navigate("/changepassword")}
               >
-                Change password
+                Forgot password
               </span>
             </div>
 
