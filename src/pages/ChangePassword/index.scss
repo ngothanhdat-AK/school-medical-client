@@ -1,0 +1,166 @@
+.reset_main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 75vh;
+  background: #fff;
+  padding: 20px;
+
+  .reset_form {
+    width: 100%;
+    max-width: 600px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    font-family: "Segoe UI", sans-serif;
+
+    &__input-password {
+      position: relative;
+    }
+
+    .reset_name {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .reset_message {
+      .error {
+        color: #e74c3c;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+
+      .success {
+        color: #27ae60;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      .reset_form__input {
+        text-align: left;
+
+        label {
+          display: block;
+          margin-bottom: 6px;
+          font-size: 14px;
+          color: #333;
+        }
+
+        input {
+          width: 100%;
+          padding: 10px 12px;
+          font-size: 14px;
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          outline: none;
+
+          &:focus {
+            border-color: #888;
+          }
+        }
+      }
+
+      .reset_form__eye {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        z-index: 1;
+      }
+
+      button {
+        margin-top: 8px;
+        padding: 12px;
+        font-size: 15px;
+        background-color: #ccc;
+        color: #fff;
+        border: none;
+        border-radius: 24px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+
+        &:hover {
+          background-color: #999;
+        }
+      }
+
+      .checkbox {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        margin-top: 10px;
+      }
+
+      .terms {
+        font-size: 12px;
+        margin-top: 10px;
+
+        a {
+          color: #333;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+@keyframes slideDownFade {
+  0% {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes slideUpFade {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+}
+@keyframes fadeInStep {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeOutStep {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+}
+.custom-alert-animate {
+  animation: slideDownFade 0.3s;
+}
+.custom-alert-hide {
+  animation: slideUpFade 0.3s forwards;
+}
+.fade-in {
+  animation: fadeInStep 0.3s;
+}
+.fade-out {
+  animation: fadeOutStep 0.3s;
+}
