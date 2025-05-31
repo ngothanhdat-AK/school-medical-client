@@ -4,6 +4,7 @@ import {useSelector} from "react-redux";
 import "./indexUpdate.scss";
 import Swal from "sweetalert2";
 import {useNavigate} from "react-router-dom";
+import LogoDefault from "../../../../assets/images/defaultlogo.svg";
 
 const UpdateUserProfile = () => {
   const navigate = useNavigate();
@@ -207,7 +208,11 @@ const UpdateUserProfile = () => {
           {error && <p className="error">{error.message || error}</p>}
           <div className="profile_image">
             <img
-              src={user.avatarUrl || "/default-avatar.png"}
+              src={
+                user.avatarUrl && user.avatarUrl.trim() !== ""
+                  ? user.avatarUrl
+                  : LogoDefault
+              }
               alt="avatar"
               width={150}
               height={150}
@@ -219,6 +224,7 @@ const UpdateUserProfile = () => {
           </div>
           <div className="profile_form">
             <form
+              className="flex flex-col justify-between items-center"
               onSubmit={(e) => {
                 e.preventDefault();
                 handleSave();

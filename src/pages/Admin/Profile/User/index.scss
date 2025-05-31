@@ -1,6 +1,7 @@
 .profile_main {
   display: flex;
   flex-direction: column;
+  max-width: 900px;
   align-items: center;
   padding: 40px 20px;
   font-family: "Segoe UI", sans-serif;
@@ -30,27 +31,20 @@
   }
 
   .profile_form {
-    width: 100%;
-    max-width: 900px;
-
+    max-width: 600px; // Thêm dòng này
     h2 {
       text-align: center;
       font-size: 24px;
       margin-bottom: 20px;
     }
-
-    form > div {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-    }
-
     .profile_input_1,
     .profile_input_2,
     .profile_input_3 {
       display: flex;
       flex-direction: column;
       gap: 16px;
+      width: 100%;
+      max-width: 600px; // Thêm dòng này
 
       label {
         font-size: 14px;
@@ -63,6 +57,7 @@
         border-radius: 8px;
         border: 1px solid #ccc;
         background-color: #f9f9f9;
+        width: 100%; // Thêm dòng này
       }
     }
   }
@@ -71,7 +66,7 @@
 .buttons {
   display: flex;
   gap: 16px;
-  margin-top: 24px;
+  margin-top: 35px;
 
   button {
     background: #fff;

@@ -121,9 +121,23 @@ const ResetPassword = () => {
                 required
               />
             </div>
-            <button type="submit" className="font-[550]">
-              Reset Password
-            </button>
+            <div className="flex justify-center items-center gap-4">
+              <button
+                type="submit"
+                className="font-[550] px-4"
+                style={{minWidth: 140}}
+              >
+                Reset Password
+              </button>
+              <button
+                type="button"
+                onClick={() => window.history.back()}
+                className="font-[550] px-4"
+                style={{minWidth: 140}}
+              >
+                Go Back
+              </button>
+            </div>
           </form>
         </div>
       </div>
