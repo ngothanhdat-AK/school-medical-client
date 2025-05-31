@@ -4,6 +4,7 @@ import {useState} from "react";
 import axiosInstance from "../../../../api/axios";
 import "./index.scss";
 import {useNavigate} from "react-router-dom";
+import LogoDefault from "../../../../assets/images/defaultlogo.svg";
 
 const UserProfile = () => {
   const navigate = useNavigate();
@@ -11,6 +12,8 @@ const UserProfile = () => {
   const [user, setUser] = useState(null);
   const storedUserId = localStorage.getItem("userId");
   const userId = useSelector((state) => state.user.userId) || storedUserId;
+  const role =
+    useSelector((state) => state.user.role) || localStorage.getItem("role");
 
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
@@ -37,57 +40,70 @@ const UserProfile = () => {
       ) : (
         <div className="profile_main">
           <div className="profile_image no-upload">
-            <img src={user.avatarUrl} alt="img2" />
+            <img
+              src={
+                user.avatarUrl && user.avatarUrl.trim() !== ""
+                  ? user.avatarUrl
+                  : LogoDefault
+              }
+              alt="img2"
+            />
           </div>
-          <div className="profile_form">
-            <h2>Hello {user.fullName}</h2>
-            <form action="">
-              <div>
-                <div className="profile_input_1">
-                  <label>Full Name</label>
-                  <input
-                    type="text"
-                    name="fullName"
-                    value={user.fullName}
-                    readOnly
-                  />
-
-                  <label>Email Address</label>
-                  <input
-                    type="emailAddress"
-                    name="emailAddress"
-                    value={user.emailAddress}
-                    readOnly
-                  />
-                </div>
-
-                <div className="profile_input_2">
-                  <label>Day of Birth</label>
-                  <input
-                    type="date"
-                    name="dateOfBirth"
-                    value={user.dateOfBirth}
-                    readOnly
-                  />
-                </div>
-                <div className="profile_input_1">
-                  <label>Address</label>
-                  <input
-                    type="text"
-                    name="address"
-                    value={user.address}
-                    readOnly
-                  />
-                </div>
-                <div className="buttons">
-                  <button type="button" onClick={() => navigate("update")}>
-                    Edit
-                  </button>
-                </div>
-              </div>
-            </form>
+          <h2>Hello {user.fullName}</h2>
+          <div className="profile_form flex flex-col justify-center items-center relative">
+            <div className="profile_input_1">
+              <label>Full Name</label>
+              <input
+                type="text"
+                name="fullName"
+                value={user.fullName}
+                readOnly
+              />
+              <label>Phone Number</label>
+              <input
+                type="text"
+                name="phoneNumber"
+                value={user.phoneNumber}
+                readOnly
+              />
+              <label>Email Address</label>
+              <input
+                type="emailAddress"
+                name="emailAddress"
+                value={user.emailAddress}
+                readOnly
+              />
+              <label>Day of Birth</label>
+              <input
+                type="date"
+                name="dateOfBirth"
+                value={user.dateOfBirth}
+                readOnly
+              />
+              <label>Address</label>
+              <input type="text" name="address" value={user.address} readOnly />
+            </div>
+            <div className="login_form__forget">
+              <span
+                style={{
+                  position: "absolute",
+                  bottom: 40,
+                  left: 130,
+                  cursor: "pointer",
+                  color: "#aaa",
+                  textDecoration: "underline",
+                }}
+                onClick={() => navigate(`/${role}/resetpassword`)}
+              >
+                Reset password
+              </span>
+            </div>
+            <div className="buttons">
+              <button type="button" onClick={() => navigate("update")}>
+                Edit
+              </button>
+            </div>
           </div>
-          
         </div>
       )}
     </>

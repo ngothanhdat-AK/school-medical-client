@@ -56,6 +56,7 @@ import ParentDetailMedicalRegistration from "./pages/Parent/MedicalRegistration/
 import ParentNotification from "./pages/Parent/Notification/Notification";
 import UserProfile from "./pages/Parent/Profile/User/UserProfile";
 import UpdateUserProfile from "./pages/Parent/Profile/Edit/UpdateUserProfile";
+import ChangePassword from "./pages/ChangePassword/ChangePassword";
 
 function App() {
   const dispatch = useDispatch();
@@ -74,8 +75,9 @@ function App() {
         {/* Trang chung cho tất cả user */}
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
+          <Route path="login" element={<Login />} />{" "}
           <Route path="resetpassword" element={<ResetPassword />} />
-          <Route path="login" element={<Login />} />
+          <Route path="changePassword" element={<ChangePassword />} />
           <Route path="resources" element={<Resources />} />
           <Route path="blog" element={<Blog />} />
           <Route path="contact" element={<Contact />} />
@@ -132,6 +134,7 @@ function App() {
             <Route path="notification" element={<ParentNotification />} />
             <Route path="profile" element={<UserProfile />} />
             <Route path="profile/update" element={<UpdateUserProfile />} />
+            <Route path="resetpassword" element={<ResetPassword />} />
           </Route>
         </Route>
 
@@ -188,6 +191,7 @@ function App() {
           />
           <Route path="profile" element={<UserProfileAdmin />} />
           <Route path="profile/update" element={<UpdateUserProfileAdmin />} />
+          <Route path="resetpassword" element={<ResetPassword />} />
         </Route>
 
         {/* Route dành cho Nurse */}
@@ -231,6 +235,7 @@ function App() {
           />
           <Route path="profile" element={<UserProfileNurse />} />
           <Route path="profile/update" element={<UpdateUserProfileNurse />} />
+          <Route path="resetpassword" element={<ResetPassword />} />
         </Route>
       </Routes>
     </>

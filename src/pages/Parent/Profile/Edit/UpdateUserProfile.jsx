@@ -4,6 +4,7 @@ import {useSelector} from "react-redux";
 import "./indexUpdate.scss";
 import Swal from "sweetalert2";
 import {useNavigate} from "react-router-dom";
+import LogoDefault from "../../../../assets/images/defaultlogo.svg";
 
 const UpdateUserProfile = () => {
   const navigate = useNavigate();
@@ -174,7 +175,7 @@ const UpdateUserProfile = () => {
         timer: 1500,
         showConfirmButton: false,
       });
-      navigate("/parent/profile");
+      navigate("/admin/profile");
     } catch (error) {
       setError(error);
       Swal.fire({
@@ -207,11 +208,19 @@ const UpdateUserProfile = () => {
           {error && <p className="error">{error.message || error}</p>}
           <div className="profile_image">
             <img
-              src={user.avatarUrl || "/default-avatar.png"}
+              src={
+                user.avatarUrl && user.avatarUrl.trim() !== ""
+                  ? user.avatarUrl
+                  : LogoDefault
+              }
               alt="avatar"
               width={150}
               height={150}
               style={{borderRadius: "50%"}}
+              onError={(e) => {
+                e.target.onerror = null; // Ngăn lặp vô hạn nếu ảnh default cũng lỗi
+                e.target.src = LogoDefault;
+              }}
             />
             <label className="upload-label">
               <input type="file" accept="image/*" onChange={handleUpload} />
@@ -219,6 +228,7 @@ const UpdateUserProfile = () => {
           </div>
           <div className="profile_form">
             <form
+              className="flex flex-col justify-between items-center"
               onSubmit={(e) => {
                 e.preventDefault();
                 handleSave();

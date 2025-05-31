@@ -142,7 +142,16 @@ const Login = () => {
             </div>
 
             <div className="login_form__forget">
-              <a href="/resetpassword">Reset password</a>
+              <span
+                style={{
+                  cursor: "pointer",
+                  color: "#aaa",
+                  textDecoration: "underline",
+                }}
+                onClick={() => navigate("/changepassword")}
+              >
+                Change password
+              </span>
             </div>
 
             <div className="login_form__terms">
